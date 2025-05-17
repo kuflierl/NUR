@@ -7,14 +7,15 @@
 #     nix-build -A mypackage
 
 { pkgs ? import <nixpkgs> { } }:
-
-{
+let
   # The `lib`, `modules`, and `overlays` names are special
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
-
-  example-package = pkgs.callPackage ./pkgs/example-package { };
-  # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
-  # ...
-}
+  
+  callPackage = pkgs.lib.callPackageWith (pkgs // { customLib = lib; } // packages);
+  packages = {
+    example-package = callPackage ./pkgs/by-name/ex/example-package/package.nix { };
+  };
+in
+packages // {inherit modules overlays lib;}
