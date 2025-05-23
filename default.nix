@@ -15,11 +15,11 @@ let
   
   callPackage = pkgs.lib.callPackageWith (pkgs // { customLib = lib; } // packages);
   packages = {
-    example-package = callPackage ./pkgs/by-name/ex/example-package/package.nix { };
-    intel-oneapi-dpcpp-cpp = callPackage ./pkgs/by-name/in/intel-oneapi-dpcpp-cpp/package.nix { };
-    level-zero-1-19 = callPackage ./pkgs/by-name/le/level-zero-1-19/package.nix { };
-    intel-compute-runtime-24-39-31294-12 = callPackage ./pkgs/by-name/in/intel-compute-runtime-24-39-31294-12/package.nix { };
-    oneapi-unified-memory-framework = callPackage ./pkgs/by-name/on/oneapi-unified-memory-framework/package.nix { };
+    example-package = callPackage (lib.pkgPathByName "example-package") { };
+    intel-oneapi-dpcpp-cpp = callPackage (lib.pkgPathByName "intel-oneapi-dpcpp-cpp") { };
+    level-zero-1-19 = callPackage (lib.pkgPathByName "level-zero-1-19") { };
+    intel-compute-runtime-24-39-31294-12 = callPackage (lib.pkgPathByName "intel-compute-runtime-24-39-31294-12") { };
+    oneapi-unified-memory-framework = callPackage (lib.pkgPathByName "oneapi-unified-memory-framework") { };
   };
 in
 packages // {inherit modules overlays lib;}
