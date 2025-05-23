@@ -4,7 +4,6 @@ let
 
   callPackage = pkgs.lib.callPackageWith (pkgs // { customLib = lib; } // packages);
   packages = {
-    example-package = callPackageByName "example-package" { };
     intel-oneapi-dpcpp-cpp = callPackageByName "intel-oneapi-dpcpp-cpp" { };
     level-zero-1-19 = callPackageByName "level-zero-1-19" { };
     intel-compute-runtime-24-39-31294-12 = callPackageByName "intel-compute-runtime-24-39-31294-12" { };
