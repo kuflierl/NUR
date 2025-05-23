@@ -12,14 +12,7 @@ let
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
-  
-  callPackage = pkgs.lib.callPackageWith (pkgs // { customLib = lib; } // packages);
-  packages = {
-    example-package = callPackage (lib.pkgPathByName "example-package") { };
-    intel-oneapi-dpcpp-cpp = callPackage (lib.pkgPathByName "intel-oneapi-dpcpp-cpp") { };
-    level-zero-1-19 = callPackage (lib.pkgPathByName "level-zero-1-19") { };
-    intel-compute-runtime-24-39-31294-12 = callPackage (lib.pkgPathByName "intel-compute-runtime-24-39-31294-12") { };
-    oneapi-unified-memory-framework = callPackage (lib.pkgPathByName "oneapi-unified-memory-framework") { };
-  };
+
+  packages = import ./pkgs/top-level { inherit pkgs lib; };
 in
 packages // {inherit modules overlays lib;}
