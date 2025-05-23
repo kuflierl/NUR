@@ -1,4 +1,12 @@
-{ stdenv, lib, level-zero-1-19, cmake, fetchFromGitHub, hwloc, numactl }:
+{
+  stdenv,
+  lib,
+  level-zero-1-19,
+  cmake,
+  fetchFromGitHub,
+  hwloc,
+  numactl,
+}:
 stdenv.mkDerivation rec {
   pname = "oneapi-unified-memory-framework";
   version = "0.10.0";
@@ -9,14 +17,13 @@ stdenv.mkDerivation rec {
     level-zero-1-19
   ];
 
-  nativeBuildInputs = [
-    cmake
-  ];
+  nativeBuildInputs = [ cmake ];
 
   cmakeFlags = [
     (lib.cmakeFeature "UMF_LEVEL_ZERO_INCLUDE_DIR" "${level-zero-1-19}/include/level_zero")
     (lib.cmakeBool "UMF_BUILD_CUDA_PROVIDER" false)
     (lib.cmakeBool "UMF_BUILD_TESTS" false) # requires google-test
+    #(lib.cmakeBool "UMF_BUILD_SHARED_LIBRARY" true)
   ];
 
   src = fetchFromGitHub {
