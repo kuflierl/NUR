@@ -41,6 +41,7 @@ let
     level-zero-1-19 = callPackageByName "level-zero-1-19" { };
     intel-compute-runtime-24-39-31294-12 = callPackageByName "intel-compute-runtime-24-39-31294-12" { };
     oneapi-unified-memory-framework = callPackageByName "oneapi-unified-memory-framework" { };
+    intel-oneapi-dpcpp-cpp-pure = callPackageByName "intel-oneapi-dpcpp-cpp-pure" { };
   };
 in
 packages
