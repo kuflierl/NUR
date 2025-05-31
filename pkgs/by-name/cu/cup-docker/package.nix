@@ -26,8 +26,10 @@ let
       "SOCKS_SERVER"
     ];
     sourceRoot = "${finalAttrs.src.name}/web";
-    nativeBuildInputs = [ bun ];
-    buildInputs = [ nodejs-slim_latest ];
+    nativeBuildInputs = [
+      bun
+      nodejs-slim_latest
+    ];
     dontConfigure = true;
     buildPhase = ''
       bun install --no-progress --frozen-lockfile
