@@ -5,6 +5,7 @@
   stdenvNoCC,
   bun,
   nodejs-slim_latest,
+  nix-update-script,
   withServer ? true,
 }:
 let
@@ -94,6 +95,15 @@ rustPlatform.buildRustPackage {
   preConfigure = ''
     cp -r ${web}/dist src/static
   '';
+
+  passthru.updateScript = nix-update-script {
+    extraArgs = [
+      "--subpackage"
+      "web.web-node-modules"
+      "--subpackage"
+      "web"
+    ];
+  };
 
   meta = {
     description = "a lightweight way to check for container image updates. written in Rust";
