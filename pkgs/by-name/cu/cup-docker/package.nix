@@ -3,7 +3,6 @@
   fetchFromGitHub,
   lib,
   stdenvNoCC,
-  stdenv,
   bun,
   nodejs-slim_latest,
   withServer ? true,
@@ -37,8 +36,7 @@ let
       mkdir -p $out/node_modules
       cp -R ./node_modules $out
     '';
-    outputHash =
-      if stdenv.isLinux then "sha256-RhfH4+mRMqoypk5rxN3ATse5AVhd3mbg4dSmuUWX1t0=" else lib.fakeHash;
+    outputHash = "sha256-RhfH4+mRMqoypk5rxN3ATse5AVhd3mbg4dSmuUWX1t0=";
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
   });
