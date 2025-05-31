@@ -9,7 +9,7 @@
   withServer ? true,
 }:
 let
-  pname = "cup";
+  pname = "cup-docker";
   version = "3.4.0";
   src = fetchFromGitHub {
     owner = "sergi0g";
@@ -103,7 +103,7 @@ rustPlatform.buildRustPackage {
     license = lib.licenses.agpl3Only;
     platforms = lib.platforms.all;
     changelog = "https://github.com/sergi0g/cup/releases";
-    mainProgram = pname;
+    mainProgram = "cup";
     maintainers = with lib.maintainers; [
       kuflierl
     ];
