@@ -10,10 +10,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Install Nix
-        uses: cachix/install-nix-action@v20
+        uses: cachix/install-nix-action@v31.4.0
       - name: Update flake packages
         id: update
-        uses: selfuryon/nix-update-action@v0.1.0
+        uses: selfuryon/nix-update-action@v1.1.0
         with:
           pr-title: "chore: update packages"
           pr-labels: |
