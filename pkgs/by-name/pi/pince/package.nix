@@ -43,9 +43,11 @@ let
       hash = "sha256-skOM2dx+u7dYbWywaC8dtUuJuXzc4Mm6skBbMfaTwfY=";
     };
 
-    cargoPatches = [ ./libptrscan-add-cargo-lock.patch ];
+    cargoLock.lockFile = ./libptrscan/Cargo.lock;
 
-    cargoHash = "sha256-YhpiOvODsyVnh6ukEVcQwAF3eYT/DbZmtq5+MIcJrtY=";
+    postPatch = ''
+      ln -s ${./libptrscan/Cargo.lock} Cargo.lock
+    '';
 
     cargoBuildFlags = [ "-p libptrscan" ];
 
@@ -54,14 +56,14 @@ let
     '';
   };
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "pince";
   version = "0.4.4";
 
   src = fetchFromGitHub {
     owner = "korcankaraokcu";
     repo = "PINCE";
-    rev = "v${version}";
+    rev = "v${finalAttrs.version}";
     hash = "sha256-+EnM+CIyAucWQi/s/wSvyRMGDN39XSpThuL873ghB3w=";
     fetchSubmodules = true;
   };
@@ -141,8 +143,11 @@ stdenv.mkDerivation rec {
       gpl3Only
       cc-by-30
     ];
-    maintainers = with lib.maintainers; [ tomasajt ];
+    maintainers = with lib.maintainers; [
+      tomasajt
+      kuflierl
+    ];
     mainProgram = "PINCE";
     platforms = lib.platforms.linux;
   };
-}
+})
