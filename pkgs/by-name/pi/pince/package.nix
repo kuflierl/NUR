@@ -58,13 +58,13 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "pince";
-  version = "0.4.4";
+  version = "0.4.5";
 
   src = fetchFromGitHub {
     owner = "korcankaraokcu";
     repo = "PINCE";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-+EnM+CIyAucWQi/s/wSvyRMGDN39XSpThuL873ghB3w=";
+    hash = "sha256-NgoZmmcMEPGpIF3IPEIoeRPOwwuxdinBlkeP0P5eVmU=";
     fetchSubmodules = true;
   };
 
